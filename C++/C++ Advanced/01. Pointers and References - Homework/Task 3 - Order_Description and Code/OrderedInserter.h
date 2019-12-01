@@ -4,34 +4,21 @@
 #include <vector>
 #include "Company.h"
 
-#include <vector>
-
 class OrderedInserter {
-
-public:
+private:
 	std::vector <const Company*> &companies;
 
-	OrderedInserter(std::vector <const Company*> &constuctor_companies) :
-		companies(constuctor_companies) {}
+public:
 
-	void insert(const Company* c)  {
-		if (companies.empty())
-			companies.push_back(c);
-		else {
-			for (size_t i = 0; i < companies.size(); ++i) {
-				if (c->getId() < companies[i]->getId()) {
-					companies.insert(companies.begin() + i, c);
-					break;
-				}
-				else if (i == companies.size() - 1) {
-					companies.push_back(c);
-					break;
-				}
-			}
-		}
+	OrderedInserter(std::vector <const Company*> &_companies) :
+		companies(_companies) {}
+
+	void insert(const Company* c) {
+		companies.push_back(c);
+		int index = companies.size()-1;
+		while (--index >= 0 && companies[index + 1]->getId() < companies[index]->getId())
+			std::swap(companies[index+1], companies[index]);
 	}
 };
 
-// Place your code here, as well as any other #include directives you might need
-
-#endif // !ORDERED_INSERTER_H
+#endif // !ORD
