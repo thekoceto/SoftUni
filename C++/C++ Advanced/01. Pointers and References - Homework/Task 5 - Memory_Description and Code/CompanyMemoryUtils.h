@@ -26,8 +26,7 @@ vector<Company> readCompaniesFromMemory(byte* &memory, int numCompanies) {
 		while (--pairNumber >= 0)
 			employees.push_back({ memory[++index], memory[++index] });
 
-		Company c{ id, name, employees };
-		companies.push_back(c);
+		companies.push_back(Company {id, name, employees});
 	}
 
 	return companies;
