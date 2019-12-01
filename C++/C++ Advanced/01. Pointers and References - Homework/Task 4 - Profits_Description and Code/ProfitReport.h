@@ -11,15 +11,14 @@
 using namespace std;
 
 string getProfitReport(	Company* fromInclusive,
-						Company* toInclusive,
-						map<int, ProfitCalculator> &profitCalculatorsByCompany) {
+			Company* toInclusive,
+			map<int, ProfitCalculator> &profitCalculatorsByCompany) {
 
 	map<int, ProfitCalculator>::iterator it;
 
 	while (true) {
-
-		int currentId = fromInclusive->getId();
-		it = profitCalculatorsByCompany.find(currentId);
+		
+		it = profitCalculatorsByCompany.find(fromInclusive->getId());
 		int profits = it->second.calculateProfit(*fromInclusive);
 		cout << fromInclusive->getName() << " = " << profits << endl;
 		if (fromInclusive == toInclusive)
